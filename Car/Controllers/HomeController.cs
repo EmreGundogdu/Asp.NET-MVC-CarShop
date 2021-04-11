@@ -19,9 +19,12 @@ namespace Car.Controllers
             var advertise = db.Advertisements.Include(m => m.Model).ToList();
             return View(advertise);
         }
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            var advertise = db.Advertisements.Where(i => i.AdvertiseId == id).Include(m => m.Model).Include(m => m.Status).Include(m => m.City).FirstOrDefault();
+            var imgs = db.Images.Where(i => i.AdvertiseId == id).ToList();
+            ViewBag.imgs = imgs;
+            return View(advertise);
         }
     }
 }

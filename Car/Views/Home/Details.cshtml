@@ -1,4 +1,4 @@
-﻿
+﻿@model Car.Models.Advertise
 @{
     ViewBag.Title = "Details";
 }
@@ -13,15 +13,15 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/Content/img/Bmw2.jpg" class="d-block w-100" alt="..." height="500">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/Content/img/Bmw8.jpg" class="d-block w-100" alt="..." height="500">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/Content/img/MbGT.jpg" class="d-block w-100" alt="..." height="500">
-                        </div>
+                        @{ int i = 0;}
+                        @foreach (var item in ViewBag.imgs)
+                                {
+                                    i++;
+                                    var active = i == 1 ? "active" : "";
+                                <div class="carousel-item @active">
+                                    <img src="/Content/img/@item.ImageName" class="d-block w-100" alt="..." height="500">
+                                </div>
+                        }
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -37,18 +37,19 @@
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr><th colspan="2">Advertise Properties</th></tr>
-                        <tr><th><strong>No :</strong></th><td>no</td></tr>
-                        <tr><th><strong>Brand :</strong></th><td>brand</td></tr>
-                        <tr><th><strong>Model :</strong></th><td>model</td></tr>
-                        <tr><th><strong>City :</strong></th><td>city</td></tr>
-                        <tr><th><strong>Date :</strong></th><td>date</td></tr>
-                        <tr><th><strong>Year :</strong></th><td>year</td></tr>
-                        <tr><th><strong>Kilometer :</strong></th><td>kilometer</td></tr>
-                        <tr><th><strong>Fuel : </strong></th><td>fuel</td></tr>
-                        <tr><th><strong>Gearing Type :</strong></th><td>gearing type</td></tr>
-                        <tr><th><strong>Description</strong></th><td>description</td></tr>
-                        <tr><th><strong>Price</strong></th><td>price</td></tr>
-                        <tr><th><strong>Phone</strong></th><td><label class="btn btn-outline-info"><i class="bi bi-telephone-forward"></i>Phone</label></td></tr>
+                        <tr><th><strong>No :</strong></th><td>@Model.AdvertiseNo</td></tr>
+                        <tr><th><strong>Brand :</strong></th><td>@Model.Model.Brand.BrandName</td></tr>
+                        <tr><th><strong>Model :</strong></th><td>@Model.Model.ModelName</td></tr>
+                        <tr><th><strong>City :</strong></th><td>@Model.City.CityName</td></tr>
+                        <tr><th><strong>Date :</strong></th><td>@Model.Date</td></tr>
+                        <tr><th><strong>Status :</strong></th><td>@Model.Status.StatusName</td></tr>
+                        <tr><th><strong>Year :</strong></th><td>@Model.ModelYear</td></tr>
+                        <tr><th><strong>Kilometer :</strong></th><td>@Model.Kilometer</td></tr>
+                        <tr><th><strong>Fuel : </strong></th><td>@Model.Fuel</td></tr>
+                        <tr><th><strong>Gearing Type :</strong></th><td>@Model.GearingType</td></tr>
+                        <tr><th><strong>Description</strong></th><td>@Model.Description</td></tr>
+                        <tr><th><strong>Price</strong></th><td>@Model.Price€</td></tr>
+                        <tr><th><strong>Phone</strong></th><td><label class="btn btn-outline-info"><i class="bi bi-telephone-forward"></i>@Model.Phone</label></td></tr>
                     </tbody>
                 </table>
             </div>
