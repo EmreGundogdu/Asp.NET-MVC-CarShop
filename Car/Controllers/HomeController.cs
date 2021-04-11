@@ -13,5 +13,9 @@ namespace Car.Controllers
         {
             return View();
         }
+        public ActionResult Details()
+        {
+            return View();
+        }
     }
 }
