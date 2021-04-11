@@ -93,6 +93,7 @@
     <Content Include="Content\img\Bmw8.jpg" />
     <Content Include="Content\img\MbC.jpg" />
     <Content Include="Content\img\MbGT.jpg" />
+    <Content Include="Page\Detail.html" />
     <Content Include="Page\Home.html" />
     <Content Include="Web.config" />
   </ItemGroup>
