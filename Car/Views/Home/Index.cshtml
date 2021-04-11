@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Car.Models.Advertise>
 @{
     ViewBag.Title = "Index";
 }
@@ -79,38 +79,31 @@
 
             </form>
         </div>
-        <div class="col-md-3">
-            <div class="img-thumbnail mt-3">
-                <a href="#"><img src="/Content/img/Bmw2.jpg" class="card-img-top" alt="..." height="240"></a>
-                <div class="card-body">
-                    <h5 class="card-title">Bmw | 2 Series </h5>
-                    <h5 class="card-title">2017</h5>
-                    <h5 class="card-title">27.000€</h5>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="img-thumbnail mt-3">
+                    @foreach (var rsm in ViewBag.imgs)
+                    {
+                        var c = 1;
+                        if (rsm.AdvertiseId == item.AdvertiseId)
+                        {
+                            if (c == 1)
+                            {
+                                <a href="/Home/Details/@item.AdvertiseId"><img src="/Content/img/@rsm.ImageName" class="card-img-top" alt="..." height="240"></a>
+                                c++;
+                            }
+                        }
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Model.Brand.BrandName | @item.Model.ModelName </h5>
+                        <h5 class="card-title">@item.ModelYear</h5>
+                        <h5 class="card-title">@item.Price €</h5>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="img-thumbnail mt-3">
-                <a href="#"><img src="/Content/img/Bmw8.jpg" class="card-img-top" alt="..." height="240"></a>
-                <div class="card-body">
-                    <h5 class="card-title">Bmw | 8 Series </h5>
-                    <h5 class="card-title">2017</h5>
-                    <h5 class="card-title">47.000€</h5>
+        }
 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="img-thumbnail mt-3">
-                <a href="#"><img src="/Content/img/MbGT.jpg" class="card-img-top" alt="..." height="240"></a>
-                <div class="card-body">
-                    <h5 class="card-title">Mercedes Benz | GT </h5>
-                    <h5 class="card-title">2019</h5>
-                    <h5 class="card-title">67.000€</h5>
-
-                </div>
-            </div>
-        </div>
     </div>
 </div>
