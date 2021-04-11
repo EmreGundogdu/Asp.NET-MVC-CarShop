@@ -26,5 +26,12 @@ namespace Car.Controllers
             ViewBag.imgs = imgs;
             return View(advertise);
         }
+        public PartialViewResult Slider()
+        {
+            var advertise = db.Advertisements.ToList().Take(5);
+            var imgs = db.Images.ToList();
+            ViewBag.imgs = imgs;
+            return PartialView(advertise);
+        }
     }
 }
