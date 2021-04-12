@@ -1,0 +1,45 @@
+﻿
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    @if (Request.IsAuthenticated)
+    {
+        if (this.User.IsInRole("admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Admin/Index">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Advertise/Index">@User.Identity.Name</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Account/Profile">Profile</a>
+            </li>
+            <li class="nav-item">
+
+                <a class="btn btn-outline-danger" aria-current="page" href="/Account/Logout"><i class="bi bi-x-circle-fill"></i>Logout</a>
+                <a class="btn btn-outline-info" aria-current="page" href="/Advertise/Create"><i class="bi bi-pen"></i>Advertise</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Advertise/Index">@User.Identity.Name</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Account/Profile">Profile</a>
+            </li>
+            <li class="nav-item">
+
+                <a class="btn btn-outline-danger" aria-current="page" href="/Account/Logout"><i class="bi bi-x-circle-fill"></i>Logout</a>
+                <a class="btn btn-outline-info" aria-current="page" href="/Advertise/Create"><i class="bi bi-pen"></i>Advertise</a>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="btn btn-outline-primary" aria-current="page" href="/Account/Register"><i class="bi bi-person"></i>Sign Up</a>
+            <a class="btn btn-outline-success" aria-current="page" href="/Account/Login"><i class="bi bi-box-arrow-in-right"></i>Sign In</a>
+            <a class="btn btn-outline-info" aria-current="page" href="/Account/Login"><i class="bi bi-pen"></i>Advertise</a>
+        </li>
+    }
+</ul>
