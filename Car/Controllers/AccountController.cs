@@ -2,6 +2,7 @@
 using Car.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,42 @@ namespace Car.Controllers
                 }
             }
             return View(model);
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(Login model,string ReturnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.Find(model.Username,model.Username);
+                if (user!=null)
+                {
+                    var authManager = HttpContext.GetOwinContext().Authentication;
+                    var identityClaims = _userManager.CreateIdentity(user, "ApplicationCookie");
+                    var authProperties = new AuthenticationProperties()
+;                   authProperties.IsPersistent = model.RememberMe;
+                    authManager.SignIn(authProperties, identityClaims);
+                    if (!String.IsNullOrEmpty(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("LoginUserError", "Invalid User");
+                }
+            }
+            return View(model);
+        }
+        public ActionResult Logout()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("Index","Home");
         }
         // GET: Account
         public ActionResult Index()
