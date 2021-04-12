@@ -95,5 +95,45 @@ namespace Car.Controllers
         {
             return View();
         }
+        public ActionResult Profile()
+        {
+            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            var user = _userManager.FindById(id);
+            var data = new UpdateProfile()
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                Username = user.UserName
+            };
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult Profile(UpdateProfile model)
+        {
+            var user = _userManager.FindById(model.Id);
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            user.UserName = model.Username;
+            user.Email = model.Email;
+            _userManager.Update(user);
+            return View("Update");
+        }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult ChangePassword(ChangePassword model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _userManager.ChangePassword(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                return View("Update");
+            }
+            return View(model);
+        }
     }
 }
