@@ -4,29 +4,88 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <form class="row mt-3">
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Brand</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Brand" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Model" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Min</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Min Price" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Max</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Max Price" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">City</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="City" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Status</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Status" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-outline-info col-12"><i class="bi bi-search"></i>Filter</button>
+                    </div>
+                </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Brand</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            </form>
         </div>
-    }
+        <div class="col-md-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Admin/Index">Admin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Delete Brand</li>
+                </ol>
+            </nav>
+            <div class="image-thumbnail mt-3">
+                <h3>Are you sure you want to delete this?</h3>
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Brand Name
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BrandName)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+                            @Html.ActionLink("Brand List", "Index", null, new { @class = "btn btn-warning" })
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
