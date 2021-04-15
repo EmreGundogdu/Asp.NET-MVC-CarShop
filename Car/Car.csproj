@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup1.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvertiseController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -198,6 +199,12 @@
     <Content Include="Views\Model\Details.cshtml" />
     <Content Include="Views\Model\Edit.cshtml" />
     <Content Include="Views\Model\Index.cshtml" />
+    <Content Include="Views\Advertise\Create.cshtml" />
+    <Content Include="Views\Advertise\Delete.cshtml" />
+    <Content Include="Views\Advertise\Details.cshtml" />
+    <Content Include="Views\Advertise\Edit.cshtml" />
+    <Content Include="Views\Advertise\Index.cshtml" />
+    <Content Include="Views\Shared\ModelPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

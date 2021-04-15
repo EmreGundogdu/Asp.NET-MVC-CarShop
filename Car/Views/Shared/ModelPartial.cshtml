@@ -1,0 +1,9 @@
+﻿
+<option value="">Select a Model</option>
+@if (ViewBag.modelList!=null)
+{
+    foreach (var item in ViewBag.modelList)
+    {
+        <option value="@item.Value"></option>
+    }
+}
