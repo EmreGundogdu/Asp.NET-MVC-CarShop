@@ -28,7 +28,7 @@ namespace Car.Controllers
         public ActionResult GetModel(int brandId)
         {
             List<Model> modelList = db.Models.Where(x => x.BrandId == brandId).ToList();
-            ViewBag.modelList = new SelectList(modelList,"ModelId","ModelName")
+            ViewBag.modelList = new SelectList(modelList, "ModelId", "ModelName");
             return PartialView("ModelPartial");
         }
 
@@ -50,8 +50,8 @@ namespace Car.Controllers
         // GET: Advertise/Create
         public ActionResult Create()
         {
+            ViewBag.brandList = new SelectList(GetBrand(), "BrandId", "BrandName");
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName");
             ViewBag.StatusId = new SelectList(db.Statuses, "StatusId", "StatusName");
             return View();
         }
@@ -65,13 +65,14 @@ namespace Car.Controllers
         {
             if (ModelState.IsValid)
             {
+                advertise.Username = User.Identity.Name;
                 db.Advertisements.Add(advertise);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName", advertise.CityId);
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", advertise.ModelId);
+            ViewBag.brandList = new SelectList(GetBrand(), "BrandId", "BrandName");
             ViewBag.StatusId = new SelectList(db.Statuses, "StatusId", "StatusName", advertise.StatusId);
             return View(advertise);
         }
