@@ -210,6 +210,8 @@
     <Content Include="Views\Shared\Search.cshtml" />
     <Content Include="Views\Home\PartialFilter.cshtml" />
     <Content Include="Views\Home\Filter.cshtml" />
+    <Content Include="Views\Status\StatusList.cshtml" />
+    <Content Include="Views\Home\MenuFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

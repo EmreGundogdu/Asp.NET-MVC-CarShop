@@ -23,14 +23,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         @Html.Partial("Search")
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">For Sale</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">For Rent</a>
-                            </li>
-                        </ul>
+                        @Html.Action("StatusList","Status")
                        @Html.Partial("LoginPartial")
                     </div>
                 </div>
@@ -45,8 +38,8 @@
                 <div class="col-md-8">
                     <h6 style="color:white; padding:15px 0px 0px 0px">CONTACT</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" style="color:white;text-decoration:none">Sign Up</a></li>
-                        <li><a href="#" style="color:white;text-decoration:none">Sign In</a></li>
+                        <li><a href="/Account/Login" style="color:white;text-decoration:none">Sign Up</a></li>
+                        <li><a href="/Account/Register" style="color:white;text-decoration:none">Sign In</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">

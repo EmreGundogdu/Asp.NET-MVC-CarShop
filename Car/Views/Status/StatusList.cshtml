@@ -1,0 +1,12 @@
+﻿@using Car.Models
+@model IEnumerable<Status>
+
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    @foreach (var item in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/Home/MenuFilter/@item.StatusId">@item.StatusName</a>
+        </li>
+    }
+
+</ul>

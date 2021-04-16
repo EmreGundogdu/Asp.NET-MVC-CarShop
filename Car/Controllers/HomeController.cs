@@ -70,5 +70,12 @@ namespace Car.Controllers
 
             return View(filter);
         }
+        public ActionResult MenuFilter(int id)
+        {
+            var imgs = db.Images.ToList();
+            ViewBag.imgs = imgs;
+            var filter = db.Advertisements.Where(i => i.StatusId == id).Include(m => m.Model).Include(m => m.City).Include(m => m.Status).ToList();
+            return View(filter);
+        }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Car.Models.Advertise>
+@{
+    ViewBag.Title = "MenuFilter";
+}
+
+<div class="container">    
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("PartialFilter", "Home")
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="img-thumbnail mt-3">
+                    @foreach (var rsm in ViewBag.imgs)
+                    {
+                        var c = 1;
+                        if (rsm.AdvertiseId == item.AdvertiseId)
+                        {
+                            if (c == 1)
+                            {
+                                <a href="/Home/Details/@item.AdvertiseId"><img src="/Content/img/@rsm.ImageName" class="card-img-top" alt="..." height="240"></a>
+                                c++;
+                            }
+                        }
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Model.Brand.BrandName | @item.Model.ModelName </h5>
+                        <h5 class="card-title">@item.ModelYear</h5>
+                        <h5 class="card-title">@item.Price €</h5>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
