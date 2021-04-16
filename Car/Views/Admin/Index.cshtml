@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Index">Admin Page</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Home</li>
+            </ol>
+        </nav>
+        <div class="col-md-2">
+            <div class="image-thumbnail mt-3">
+                <p>@Html.ActionLink("Advertise List", "AdvertiseList", "Admin", null, new { @class = "btn btn-primary" })</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="image-thumbnail mt-3">
+                <p>@Html.ActionLink("City List", "Index", "City", null, new { @class = "btn btn-success" })</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="image-thumbnail mt-3">
+                <p>@Html.ActionLink("Status List", "Index", "Status", null, new { @class = "btn btn-info" })</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="image-thumbnail mt-3">
+                <p>@Html.ActionLink("Brand List", "Index", "Brand", null, new { @class = "btn btn-secondary" })</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="image-thumbnail mt-3">
+                <p>@Html.ActionLink("Model List", "Index", "Model", null, new { @class = "btn btn-warning" })</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
