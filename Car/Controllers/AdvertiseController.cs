@@ -18,7 +18,8 @@ namespace Car.Controllers
         // GET: Advertise
         public ActionResult Index()
         {
-            var advertisements = db.Advertisements.Include(a => a.City).Include(a => a.Model).Include(a => a.Status);
+            var username = User.Identity.Name;
+            var advertisements = db.Advertisements.Where(i=>i.Username==username).Include(a => a.City).Include(a => a.Model).Include(a => a.Status);
             return View(advertisements.ToList());
         }
         public List<Brand> GetBrand()
