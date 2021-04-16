@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Car.Controllers
 {
@@ -12,11 +14,11 @@ namespace Car.Controllers
     {
         DataContext db = new DataContext();
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int sayi=1)
         {
             var imgs = db.Images.ToList();
             ViewBag.imgs = imgs;
-            var advertise = db.Advertisements.Include(m => m.Model).ToList();
+            var advertise = db.Advertisements.Include(m => m.Model).ToList().ToPagedList(sayi,3);
             return View(advertise);
         }
         public ActionResult Search(string q)

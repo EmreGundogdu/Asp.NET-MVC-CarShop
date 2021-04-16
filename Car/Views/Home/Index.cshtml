@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Car.Models.Advertise>
+﻿@model PagedList<Car.Models.Advertise>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
@@ -10,8 +12,8 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">               
-                @Html.Action("Slider","Home")
+            <div class="carousel-inner">
+                @Html.Action("Slider", "Home")
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -25,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            @Html.Action("PartialFilter","Home")
+            @Html.Action("PartialFilter", "Home")
         </div>
         @foreach (var item in Model)
         {
@@ -52,6 +54,7 @@
                 </div>
             </div>
         }
+        @Html.PagedListPager(Model,sayi=>Url.Action("Index",new { sayi}))
 
     </div>
 </div>
