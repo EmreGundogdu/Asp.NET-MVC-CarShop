@@ -1,0 +1,73 @@
+﻿
+@model Car.Models.Advertise
+@using (Html.BeginForm("Filter", "Home", FormMethod.Get, new { @class = "row" }))
+{
+    
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Brand</label>
+            <div class="col-sm-8">
+                @Html.DropDownListFor(m => m.BrandId, ViewBag.brandList as SelectList, "Select A Brand", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
+            <div class="col-sm-8">
+                @Html.DropDownListFor(m => m.ModelId, new SelectList(""), "Select A Model", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Min</label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="Min Price" name="min" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Max</label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="Max Price" name="max" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">City</label>
+            <div class="col-sm-8">
+                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-outline-info col-12"><i class="bi bi-search"></i>Filter</button>
+            </div>
+        </div>
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#BrandId').change(function () {
+            var brandId = $(this).val();
+            debugger
+            $.ajax({
+                type: "Post",
+                url: "/Advertise/GetModel?BrandId=" + brandId,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("ModelId").empty();
+                    $("ModelId").append(response);
+                }
+            })
+        })
+    })
+</script>

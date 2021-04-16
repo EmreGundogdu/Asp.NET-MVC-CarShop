@@ -208,6 +208,8 @@
     <Content Include="Views\Advertise\Image.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\Search.cshtml" />
+    <Content Include="Views\Home\PartialFilter.cshtml" />
+    <Content Include="Views\Home\Filter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

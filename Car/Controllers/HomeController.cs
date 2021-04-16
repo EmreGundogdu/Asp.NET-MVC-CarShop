@@ -44,5 +44,31 @@ namespace Car.Controllers
             ViewBag.imgs = imgs;
             return PartialView(advertise);
         }
+        public PartialViewResult PartialFilter()
+        {
+            ViewBag.brandList = new SelectList(GetBrand(), "BrandId", "BrandName");
+            ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
+            ViewBag.StatusId = new SelectList(db.Statuses, "StatusId", "StatusName");
+            return PartialView();
+        }
+        public List<Brand> GetBrand()
+        {
+            List<Brand> brands = db.Brands.ToList();
+            return brands;
+        }
+        public ActionResult GetModel(int brandId)
+        {
+            List<Model> modelList = db.Models.Where(x => x.BrandId == brandId).ToList();
+            ViewBag.modelList = new SelectList(modelList, "ModelId", "ModelName");
+            return PartialView("ModelPartial");
+        }
+        public ActionResult Filter(int min,int max,int cityId,int statusId,int brandId,int modelId)
+        {
+            var imgs = db.Images.ToList();
+            ViewBag.imgs = imgs;
+            var filter = db.Advertisements.Where(i => i.Price >= min && i.Price <= max && i.CityId == cityId && i.StatusId == statusId && i.BrandId == brandId && i.ModelId == modelId).Include(m => m.Model).Include(m => m.Status).Include(m => m.City).ToList();
+
+            return View(filter);
+        }
     }
 }
