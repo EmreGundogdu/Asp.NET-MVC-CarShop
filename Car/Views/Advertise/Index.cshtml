@@ -4,108 +4,114 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <form class="row mt-3">
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Brand</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Brand" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Model" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Min</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Min Price" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Max</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Max Price" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">City</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="City" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Status</label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="Status" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-outline-info col-12"><i class="bi bi-search"></i>Filter</button>
+                    </div>
+                </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.City.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model.ModelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status.StatusName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdvertiseNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kilometer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModelYear)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fuel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GearingType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BrandId)
-        </th>
-        <th></th>
-    </tr>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Advertise List</li>
+                </ol>
+            </nav>
+            <div class="image-thumbnail mt-3">
+                
+                <table class="table">
+                    <tr>
+                        <th>
+                           Brand
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            City
+                        </th>  
+                        <th>
+                            Price
+                        </th>
+                        <th></th>
+                    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.City.CityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model.ModelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.StatusName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdvertiseNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kilometer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModelYear)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fuel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GearingType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrandId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AdvertiseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AdvertiseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AdvertiseId })
-        </td>
-    </tr>
-}
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model.Brand.BrandName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model.ModelName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City.CityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status.StatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
 
-</table>
+                    <td>
+                        <a class="btn btn-outline-info" href="@Url.Action("Image",new { id = item.AdvertiseId })"><i class="bi bi-camera"></i>Add Image</a>
+                        <a class="btn btn-outline-primary" href="@Url.Action("Edit",new { id = item.AdvertiseId })"><i class="bi bi-pencil"></i>Edit</a>
+                        <a class="btn btn-outline-danger" href="@Url.Action("Delete",new { id = item.AdvertiseId })"><i class="bi bi-trash"></i>Delete</a>
+                    </td>
+                </tr>
+                    }
+
+                </table>               
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -89,6 +90,7 @@ namespace Car.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.brandList = new SelectList(GetBrand(), "BrandId", "BrandName");
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName", advertise.CityId);
             ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", advertise.ModelId);
             ViewBag.StatusId = new SelectList(db.Statuses, "StatusId", "StatusName", advertise.StatusId);
@@ -109,7 +111,7 @@ namespace Car.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName", advertise.CityId);
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", advertise.ModelId);
+            ViewBag.brandList = new SelectList(GetBrand(), "BrandId", "BrandName");
             ViewBag.StatusId = new SelectList(db.Statuses, "StatusId", "StatusName", advertise.StatusId);
             return View(advertise);
         }
@@ -147,6 +149,26 @@ namespace Car.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Image(int id)
+        {
+            var advertise = db.Advertisements.Where(i => i.AdvertiseId == id).ToList();
+            var img = db.Images.Where(i => i.AdvertiseId == id).ToList();
+            ViewBag.img = img;
+            ViewBag.advertise = advertise;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Image(int id,HttpPostedFileBase file)
+        {
+            string path = Path.Combine("/Content/img/" + file.FileName);
+            file.SaveAs(Server.MapPath(path));
+            Image img = new Image();
+            img.ImageName = file.FileName.ToString();
+            img.AdvertiseId = id;
+            db.Images.Add(img);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
